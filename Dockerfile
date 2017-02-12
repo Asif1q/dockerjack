@@ -53,7 +53,7 @@ LABEL org.freenas.autostart="true" \
 RUN \
   echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk upgrade --no-cache && \
-  apk add --no-cache mono@testing
+  apk add --no-cache mono@testing libcurl
 
 # Install Jackett
 RUN wget "https://github.com/Jackett/Jackett/releases/download/$(wget -q https://github.com/Jackett/Jackett/releases/latest -O - | grep -E \/tag\/ | awk -F "[><]" '{print $3}')/Jackett.Binaries.Mono.tar.gz" && \
