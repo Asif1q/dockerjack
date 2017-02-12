@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv ash
+
+echo "Starting Jackett."
+umask 002
+exec s6-setuidgid jackett mono /Jackett/JackettConsole.exe -d /config
