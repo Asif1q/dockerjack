@@ -25,4 +25,4 @@ twanislas/jackett
 - `-p <host port>:<container port>` Forwards ports from the host to the container.
   - `9117` Web interface port.
 - `-v <path/to/jackett/config>:/config` This is the path where you want to store Jackett's configuration
-- `-v <path/to/data/folder>:/data` This is the path where you want to store your data.
+- `-v <path/to/data/folder>:/data` This is the path where Jackett can download torrents while doing a manual search. Also known as "blackhole" folder Ideally, this folder would be monitored by your download client.
