@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ "$DOCKER_TAG" =~ "^[0-9.]+$" ]]; then
+  VERSION=$DOCKER_TAG
+else
+  VERSION=$DOCKER_TAG-`date -u +"%Y%m%d%H%M"`-`git rev-parse --short HEAD`
+fi
+
+docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+             --build-arg VCS_REF=`git rev-parse --short HEAD` \
+             --build-arg VERSION=$VERSION \
+             -t $IMAGE_NAME .
