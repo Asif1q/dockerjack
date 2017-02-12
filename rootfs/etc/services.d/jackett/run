@@ -2,4 +2,4 @@
 
 echo "Starting Jackett."
 umask 002
-exec s6-setuidgid jackett mono /Jackett/JackettConsole.exe -d /config
+exec s6-setuidgid jackett sh -c "HOME=/config mono /Jackett/JackettConsole.exe -d /config"
