@@ -11,6 +11,11 @@ echo "Running Jackett first run setup..."
 addgroup -g ${JACKETT_GID:-2000} -S jackett
 adduser -h /config -s /sbin/nologin -G jackett -S -D -H -u ${JACKETT_UID:-2000} -k /dev/null jackett
 
+# Set some sane defaults if there's no config file yet
+if [ ! -f /config/ServerConfig.json ]; then
+  cp /ServerConfig.json /config/ServerConfig.json
+fi
+
 # Update ownership of dirs we need to write to
 chown -R jackett:jackett /config /data
 
