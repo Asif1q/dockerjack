@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv ash
+
+# If the first run completed successfully, we are done
+if [ -e /.firstRunComplete ]; then
+  exit 0
+fi
+
+echo "Running Jackett first run setup..."
+
+# Add user and group
+addgroup -g ${JACKETT_GID:-2000} -S jackett
+adduser -h /config -s /sbin/nologin -G jackett -S -D -H -u ${JACKETT_UID:-2000} -k /dev/null jackett
+
+# Update ownership of dirs we need to write to
+chown -R jackett:jackett /config /data
+
+touch /.firstRunComplete
+echo "Jackett first run setup complete"
