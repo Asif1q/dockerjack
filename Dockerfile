@@ -68,3 +68,6 @@ EXPOSE 9117/tcp
 
 # Volumes
 VOLUME /config /data
+
+# Health check
+HEALTHCHECK CMD curl --connect-timeout 15 --show-error --silent --fail --location "http://localhost:9117" > /dev/null || exit 1
