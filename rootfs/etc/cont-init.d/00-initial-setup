@@ -17,7 +17,7 @@ if [ ! -f /config/ServerConfig.json ]; then
 fi
 
 # Update ownership of dirs we need to write to
-chown -R jackett:jackett /config /data
+chown -R jackett:jackett /config /data /Jackett
 
 touch /.firstRunComplete
 echo "Jackett first run setup complete"
