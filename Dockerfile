@@ -5,7 +5,7 @@ LABEL maintainer="Antoine Rahier <antoine.rahier@gmail.com>"
 # Build-time metadata
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION
+ARG VERSION=0.0.3
 LABEL org.label-schema.build-date="$BUILD_DATE" \
       org.label-schema.name="docker-jackett" \
       org.label-schema.description="Docker container for Jackett, based on latest Alpine Linux" \
