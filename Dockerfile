@@ -56,7 +56,7 @@ RUN \
   apk add --no-cache mono@testing libcurl
 
 # Install Jackett
-RUN wget "https://github.com/Jackett/Jackett/releases/download/$(wget -q https://github.com/Jackett/Jackett/releases/latest -O - | grep -E \/tag\/ | awk -F "[><]" '{print $3}')/Jackett.Binaries.Mono.tar.gz" && \
+RUN wget -O /tmp/Jackett.tar.gz $(wget -q -O - https://api.github.com/repos/jackett/jackett/releases/latest | grep -E "download.*Mono" | awk '{print $2}' | tr -d \") && \
     tar -xzf Jackett.Binaries.Mono.tar.gz && \
     rm Jackett.Binaries.Mono.tar.gz
 
