@@ -3,6 +3,7 @@ MAINTAINER Antoine Rahier <antoine.rahier@gmail.com>
 LABEL maintainer="Antoine Rahier <antoine.rahier@gmail.com>"
 
 # Build-time metadata
+ARG DEBIAN_FRONTEND=noninteractive
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL org.label-schema.build-date="$BUILD_DATE" \
