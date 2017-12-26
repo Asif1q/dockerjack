@@ -1,19 +1,17 @@
-FROM twanislas/base-alpine:latest
+FROM twanislas/base-debian
 MAINTAINER Antoine Rahier <antoine.rahier@gmail.com>
 LABEL maintainer="Antoine Rahier <antoine.rahier@gmail.com>"
 
 # Build-time metadata
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=0.0.3
 LABEL org.label-schema.build-date="$BUILD_DATE" \
       org.label-schema.name="docker-jackett" \
-      org.label-schema.description="Docker container for Jackett, based on latest Alpine Linux" \
+      org.label-schema.description="Docker container for Jackett, based on latest Debian stable" \
       org.label-schema.url="https://github.com/Twanislas/docker-jackett" \
       org.label-schema.vcs-ref="$VCS_REF" \
       org.label-schema.vcs-url="https://github.com/Twanislas/docker-jackett" \
       org.label-schema.vendor="Antoine Rahier" \
-      org.label-schema.version="$VERSION" \
       org.label-schema.schema-version="1.0"
 
 # FreeNAS metadata
@@ -34,7 +32,6 @@ LABEL org.freenas.autostart="true" \
         } \
       ]" \
       org.freenas.upgradeable="true" \
-      org.freenas.version="$VERSION" \
       org.freenas.volumes="[ \
         { \
             \"name\": \"/config\", \
@@ -51,14 +48,15 @@ LABEL org.freenas.autostart="true" \
 
 # Add repos and install what we need
 RUN \
-  echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-  apk upgrade --no-cache && \
-  apk add --no-cache mono@testing libcurl
+  apt-get update && \
+  apt-get -y dist-upgrade && \
+  apt-get -y install mono-devel ca-certificates-mono libcurl4-openssl-dev
 
 # Install Jackett
-RUN wget -O Jackett.tar.gz $(wget -q -O - https://api.github.com/repos/jackett/jackett/releases/latest | grep -E "download.*Mono" | awk '{print $2}' | tr -d \") && \
-    tar -xzf Jackett.tar.gz && \
-    rm Jackett.tar.gz
+RUN \
+wget -O /tmp/Jackett.tar.gz $(wget -q -O - https://api.github.com/repos/jackett/jackett/releases/latest | grep -E "download.*Mono" | awk '{print $2}' | tr -d \") && \
+tar -xzf /tmp/Jackett.tar.gz -C /opt/ && \
+rm /tmp/Jackett.tar.gz
 
 # Copy needed files
 COPY rootfs/ /

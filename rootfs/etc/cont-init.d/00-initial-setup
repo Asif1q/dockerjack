@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv ash
+#!/usr/bin/with-contenv bash
 
 # If the first run completed successfully, we are done
 if [ -e /.firstRunComplete ]; then
@@ -8,8 +8,8 @@ fi
 echo "Running Jackett first run setup..."
 
 # Add user and group
-addgroup -g ${JACKETT_GID:-2000} -S jackett
-adduser -h /config -s /sbin/nologin -G jackett -S -D -H -u ${JACKETT_UID:-2000} -k /dev/null jackett
+addgroup --system --gid ${JACKETT_GID:-2000} jackett
+adduser --system --home /config --shell /sbin/nologin --no-create-home --uid ${JACKETT_UID:-2000} --ingroup jackett --disabled-password --disabled-login jackett
 
 # Set some sane defaults if there's no config file yet
 if [ ! -f /config/ServerConfig.json ]; then
@@ -17,7 +17,7 @@ if [ ! -f /config/ServerConfig.json ]; then
 fi
 
 # Update ownership of dirs we need to write to
-chown -R jackett:jackett /config /data /Jackett
+chown -R jackett:jackett /config /data /opt/Jackett
 
 touch /.firstRunComplete
 echo "Jackett first run setup complete"

@@ -1,0 +1,9 @@
+#!/bin/sh
+# Upgrade Jackett to latest
+
+service jackett stop
+wget -O /tmp/Jackett.tar.gz $(wget -q -O - https://api.github.com/repos/jackett/jackett/releases/latest | grep -E "download.*Mono" | awk '{print $2}' | tr -d \")
+tar -xzf /tmp/Jackett.tar.gz -C /opt/
+rm /tmp/Jackett.tar.gz
+chown -R jackett:jackett /opt/Jackett
+service jackett restart

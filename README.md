@@ -1,8 +1,8 @@
 # docker-jackett
 
-[![](https://images.microbadger.com/badges/version/twanislas/jackett.svg)](https://github.com/Twanislas/docker-jackett/releases) [![](https://images.microbadger.com/badges/commit/twanislas/jackett.svg)](https://github.com/Twanislas/docker-jackett) [![](https://images.microbadger.com/badges/image/twanislas/jackett.svg)](https://microbadger.com/images/twanislas/jackett)  [![](https://img.shields.io/docker/pulls/twanislas/jackett.svg)](https://hub.docker.com/r/twanislas/jackett/) [![](https://img.shields.io/docker/stars/twanislas/jackett.svg)](https://hub.docker.com/r/twanislas/jackett/)
+ [![](https://images.microbadger.com/badges/commit/twanislas/jackett.svg)](https://github.com/Twanislas/docker-jackett) [![](https://images.microbadger.com/badges/image/twanislas/jackett.svg)](https://microbadger.com/images/twanislas/jackett)  [![](https://img.shields.io/docker/pulls/twanislas/jackett.svg)](https://hub.docker.com/r/twanislas/jackett/) [![](https://img.shields.io/docker/stars/twanislas/jackett.svg)](https://hub.docker.com/r/twanislas/jackett/)
 
-Docker container for [Jackett](https://github.com/Jackett/Jackett), based on latest Alpine Linux
+Docker container for [Jackett](https://github.com/Jackett/Jackett), based on latest Debian stable
 
 Jackett works as a proxy server: it translates queries from apps (Sonarr, Radarr, SickRage, CouchPotato, Mylar, etc) into tracker-site-specific http queries, parses the html response, then sends results back to the requesting software. This allows for getting recent uploads (like RSS) and performing searches. Jackett is a single repository of maintained indexer scraping & translation logic - removing the burden from other apps.
 
