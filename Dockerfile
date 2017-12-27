@@ -74,4 +74,4 @@ EXPOSE 9117/tcp
 VOLUME /config /data
 
 # Health check
-HEALTHCHECK CMD curl --connect-timeout 15 --show-error --silent --fail --location "http://localhost:9117" > /dev/null || exit 1
+HEALTHCHECK CMD curl --connect-timeout 15 --show-error --silent --fail --location "http://localhost:9117/UI/Dashboard" > /dev/null || exit 1
