@@ -47,11 +47,16 @@ LABEL org.freenas.autostart="true" \
       org.freenas.web-ui-port=9117 \
       org.freenas.web-ui-path=""
 
+# Environment settings
+ENV HOME="/config" \
+XDG_CONFIG_HOME="/config" \
+XDG_DATA_HOME="/config"
+
 # Add repos and install what we need
 RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
-  apt-get -y install mono-devel ca-certificates-mono libcurl4-openssl-dev
+  apt-get -y install curl mono-devel ca-certificates-mono libcurl4-openssl-dev
 
 # Install Jackett
 RUN \
